@@ -54,7 +54,8 @@ jobs:
     - name: ScanID found from cxflow
       id: contents
       run: |
-        echo "::set-output name=data::Satyamchaurasia"
+        contents=$( cat .scanid.txt )
+        echo "::set-output name=data::$contents"
   job2:
     runs-on: ubuntu-latest
     needs: build
