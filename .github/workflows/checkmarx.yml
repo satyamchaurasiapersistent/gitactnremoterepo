@@ -58,8 +58,7 @@ jobs:
       id: contents
       run: |
         $contents= ${{ steps.step1.outputs.cxflowscanid }}
-        echo "::set-output name=data::$contents"
-       # contents=$( cat .scanid.txt )        
+        echo "::set-output name=data::$contents"        
   job2:
     runs-on: ubuntu-latest
     needs: build
