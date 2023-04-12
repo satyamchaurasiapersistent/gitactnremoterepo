@@ -57,7 +57,7 @@ jobs:
     - name: ScanID found from cxflow
       id: contents
       run: |
-        $contents= ${{ steps.step1.outputs.cxflowscanid }}
+        contents= ${{ steps.step1.outputs.cxflowscanid }}
         echo "::set-output name=data::$contents"        
   job2:
     runs-on: ubuntu-latest
