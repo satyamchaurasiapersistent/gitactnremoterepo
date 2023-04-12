@@ -52,7 +52,7 @@ jobs:
         params: --checkmarx.incremental=false --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --cx-flow.filter-severity --cx-flow.filter-category --checkmarx.disable-clubbing=true --repo-url=${{ github.event.repository.url }}
     # Upload the Report for CodeQL/Security Alerts
     - name: From Entry Point SH
-      run: echo "The time was ${{ steps.step1.outputs.$GITHUB_SHA }}"
+      run: echo "The time was ${{ steps.step1.outputs.{{$GITHUB_SHA}} }}"
     - name: ScanID found from cxflow
       id: contents
       run: |
