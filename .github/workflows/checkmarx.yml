@@ -54,8 +54,9 @@ jobs:
     - name: From Entry Point SH
       run: |
         val=$GITHUB_SHA
-        echo "The time was ${{ steps.step1.outputs.GITHUB_SHA }}"
-        echo "The time was ${{ steps.step1.outputs.val }}"
+        echo "SHA ID IS $val"
+        echo "::set-output name=datamata::$val"
+        echo "The Value was ${{ steps.step1.outputs.datamata }}"
     - name: ScanID found from cxflow
       id: contents
       run: |
