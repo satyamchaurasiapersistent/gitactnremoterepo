@@ -40,7 +40,7 @@ jobs:
     # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
     - name: Checkmarx CxFlow Action
       id: step1
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.10
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.11
       with:
         project: ${{ github.event.repository.name }}
         team: ${{ secrets.CHECKMARX_TEAMS }}
@@ -60,8 +60,8 @@ jobs:
         ls -la
         echo $contents
         echo ls -la
-        contents=$( cat .scanid.txt )
-        echo "::set-output name=data::$contents"
+       # contents=$( cat .scanid.txt )
+       # echo "::set-output name=data::$contents"
   job2:
     runs-on: ubuntu-latest
     needs: build
