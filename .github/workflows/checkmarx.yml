@@ -53,10 +53,7 @@ jobs:
     # Upload the Report for CodeQL/Security Alerts
     - name: From Entry Point SH
       run: |
-        val=$GITHUB_SHA
-        echo "SHA ID IS $val"
-        echo "::set-output name=datamata::$val"
-        echo "The Value was ${{ steps.step1.outputs.datamata }}"
+        echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
     - name: ScanID found from cxflow
       id: contents
       run: |
