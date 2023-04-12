@@ -57,6 +57,8 @@ jobs:
     - name: ScanID found from cxflow
       id: contents
       run: |
+        ls -la
+        echo ls -la
         contents=$( cat .scanid.txt )
         echo "::set-output name=data::$contents"
   job2:
