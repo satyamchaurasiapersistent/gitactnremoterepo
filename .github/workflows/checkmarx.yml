@@ -63,6 +63,5 @@ jobs:
     needs: build
     steps:
       - run: |
-          echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
           echo "${{needs.build.outputs.output1}}"
    
