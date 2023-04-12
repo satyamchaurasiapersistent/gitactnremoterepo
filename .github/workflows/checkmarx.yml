@@ -66,5 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: echo "${{needs.build.outputs.output1}}"
+      - run: |
+          echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
+          echo "${{needs.build.outputs.output1}}"
    
