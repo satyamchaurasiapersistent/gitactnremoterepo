@@ -40,7 +40,7 @@ jobs:
     # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
     - name: Checkmarx CxFlow Action
       id: step1
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.23
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.24
       with:
         project: ${{ github.event.repository.name }}
         team: ${{ secrets.CHECKMARX_TEAMS }}
