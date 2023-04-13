@@ -1,5 +1,5 @@
 sleep 2m
 echo "Satyam"
-scanID=$(grep ':&:&:&:::' scanid$GITHUB_SHA.txt | tr -d ':&:&:&::: ')
+scanID=$(grep ':&:&:&:::' cx-flow.log | tr -d ':&:&:&::: ')
 echo "ScanID Is : "
 echo $scanID
