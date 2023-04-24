@@ -58,6 +58,9 @@ jobs:
     - name: ScanID found from cxflow      
       id: contents
       run: |
+        cat scanid$GITHUB_SHA.txt
+        scanID=$(grep 'cxflowscanidextraction' scanid$GITHUB_SHA.txt | sed 's/.*cxflowscanidextractiongithubaction \(.*\)endofstatementscanidaction/\1/')
+        echo $scanID
         echo "::set-output name=data::${{ steps.step1.outputs.cxflowscanid }}"        
   job2:
     runs-on: ubuntu-latest
