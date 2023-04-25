@@ -45,9 +45,9 @@ jobs:
       with:
         project: ${{ github.event.repository.name }}
         team: ${{ secrets.CHECKMARX_TEAMS }}
-        checkmarx_url: "https://7b7b-31-168-164-190.ngrok-free.app"
-        checkmarx_username: "admin"
-        checkmarx_password: "Cx12345678!"
+        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         scanners: sast
         params: --github --checkmarx.incremental=false --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --cx-flow.filter-severity --cx-flow.filter-category --checkmarx.disable-clubbing=true --repo-url=${{ github.event.repository.url }}
