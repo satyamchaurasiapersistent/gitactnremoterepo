@@ -55,10 +55,10 @@ jobs:
     - name: From Entry Point SH
       run: |
         echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
-    - name: ScanID found from cxflow      
-      id: contents
-      run: |
-        echo "::set-output name=data::${{ steps.step1.outputs.cxflowscanid }}"        
+   # - name: ScanID found from cxflow      
+    #  id: contents
+     # run: |
+      #  echo "::set-output name=data::${{ steps.step1.outputs.cxflowscanid }}"        
   job2:
     runs-on: ubuntu-latest
     needs: build
