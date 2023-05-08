@@ -45,14 +45,21 @@ jobs:
       id: step1
       uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.35
       with:
-        project: ${{ github.event.repository.name }}-${{ github.ref_name }}
+        project:  ${{ github.repository }}
         team: ${{ secrets.CHECKMARX_TEAMS }}
         checkmarx_url: ${{ secrets.CHECKMARX_URL }}
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+        incremental: true
+        break_build: false
         scanners: sast
-        params: --github --checkmarx.cx-branch=true --checkmarx.incremental=false --default-branch=${{ github.event.repository.default_branch }} --checkmarx.settings-override=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref_name }} --cx-flow.filter-severity --cx-flow.filter-category --checkmarx.disable-clubbing=true --repo-url=${{ github.event.repository.url }}
+        bug_tracker: Sarif
+        params: --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+    - name: Upload Checkmarx results
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: cx.sarif
     # Upload the Report for CodeQL/Security Alerts
     - name: From Entry Point SH
       run: |
