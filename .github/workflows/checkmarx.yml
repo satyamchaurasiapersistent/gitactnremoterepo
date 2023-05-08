@@ -18,8 +18,8 @@ on:
    # - cron: $cron-weekly
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel - this job is specifically configured to use the Checkmarx CxFlow Action
-permissions:
-  contents: read
+#permissions:
+#  contents: read
 
 jobs:
   # This workflow contains a single job called "build"
