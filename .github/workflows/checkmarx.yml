@@ -54,19 +54,11 @@ jobs:
         scanners: sast
         bug_tracker: Sarif
         params:  --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
-    # Upload the Report for CodeQL/Security Alerts
-    - name: Upload Checkmarx results
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: cx.sarif
     - name: From Entry Point SH
       run: |
         echo ?#
         #echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
-   # - name: ScanID found from cxflow      
-    #  id: contents
-     # run: |
-      #  echo "::set-output name=data::${{ steps.step1.outputs.cxflowscanid }}"        
+  
   job2:
     runs-on: satyamm
     needs: build
