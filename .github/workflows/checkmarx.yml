@@ -39,16 +39,17 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
-    - name: Installation Of Certificate
-      run: |          
-         ls -la
-         sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore   $JAVA_HOME/lib/security/cacerts -file checkmarx.crt --noprompt
+   # - name: Installation Of Certificate
+    #  run: |          
+     #    ls -la
+      #   sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore   $JAVA_HOME/lib/security/cacerts -file checkmarx.crt --noprompt
 
     - name: Checkmarx CxFlow Action
       id: step1
-      uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
-     # uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.50
+     # uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.51
       #checkmarx-ts/checkmarx-cxflow-github-action@v1.7
+      
       with:
         project: ${{ github.repository }}
         team: ${{ secrets.CHECKMARX_TEAMS }}
@@ -60,7 +61,7 @@ jobs:
         break_build: false
         scanners: sast
         bug_tracker: Sarif
-        params:  --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        params:   --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
         echo ?#
