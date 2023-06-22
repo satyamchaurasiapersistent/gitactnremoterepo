@@ -42,7 +42,7 @@ jobs:
     - name: Installation Of Certificate
       run: |          
          ls -la
-         sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore  "/usr/local/openjdk-8/jre/lib/security/cacerts" -file checkmarx.crt --noprompt
+         sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore   $JAVA_HOME/lib/security/cacerts" -file checkmarx.crt --noprompt
 
     - name: Checkmarx CxFlow Action
       id: step1
