@@ -39,6 +39,11 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
+    - name: Installation Of Certificate
+      run: |          
+         ls -la
+         sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore  "/usr/local/openjdk-8/jre/lib/security/cacerts" -file /home/circleci/project/src/test/resources/checkmarx.crt --noprompt
+
     - name: Checkmarx CxFlow Action
       id: step1
       uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
