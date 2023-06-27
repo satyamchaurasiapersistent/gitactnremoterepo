@@ -47,7 +47,7 @@ jobs:
     - name: Checkmarx CxFlow Action
       id: step1
      # uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.59
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.60
       #checkmarx-ts/checkmarx-cxflow-github-action@v1.7
       
       with:
