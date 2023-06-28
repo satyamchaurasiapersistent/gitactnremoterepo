@@ -62,7 +62,7 @@ jobs:
         scanners: sast
         bug_tracker: Sarif
         extra_certificates: certificate
-        jvmkeytool_path: /usr/local/openjdk-8/jre/lib/security/cacerts
+        jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk
         params:   --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
