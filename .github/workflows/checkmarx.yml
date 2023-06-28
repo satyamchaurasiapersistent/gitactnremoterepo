@@ -59,7 +59,7 @@ jobs:
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         incremental: true
         break_build: false
-        scanners: sast
+        scanners: sca
         bug_tracker: Sarif
         extra_certificates: certificate
         jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
