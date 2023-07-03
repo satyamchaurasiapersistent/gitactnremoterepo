@@ -59,11 +59,11 @@ jobs:
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
         incremental: true
         break_build: false
-        scanners: sca
+        scanners: sast
         bug_tracker: Sarif
         extra_certificates: certificate
         jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
-        params:   --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        params: --checkmarx.restrict-results-to-branch=true --checkmarx.client-id="resource_owner_sast_client" --checkmarx.scope="sast_api access_control_api sast_rest_api"  --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
         echo ?#
