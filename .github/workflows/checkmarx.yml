@@ -57,7 +57,8 @@ jobs:
         script: |
           const ip = require('ip')
           const runnerIp = ip.address()
-          echo $runnerIp
+          echo (runnerIp)
+          echo ($runnerIp)
         project: ${{ github.repository }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }}
