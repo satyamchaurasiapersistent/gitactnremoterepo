@@ -38,7 +38,13 @@ jobs:
     # Steps require - checkout code, run CxFlow Action, Upload SARIF report (optional)
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        script: |
+            const ip = require('ip')
+            const runnerIp = ip.address()
+            const DOCKER_IP = runnerIp
+            print(DOCKER_IP)
     # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
    # - name: Installation Of Certificate
     #  run: |          
@@ -54,11 +60,6 @@ jobs:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
       with:
-        script: |
-          const ip = require('ip')
-          const runnerIp = ip.address()
-          print (runnerIp)
-          echo ($runnerIp)
         project: ${{ github.repository }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }}
