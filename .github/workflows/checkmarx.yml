@@ -74,11 +74,11 @@ jobs:
         #echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
   
   job2:
-    runs-on: satyamm
+    runs-on: satyamicici
     needs: build
     steps:
       - run: |
-          echo "${{needs.build.outputs.output1}}"
+          echo ip a
   job3:
     runs-on: satyamm
     needs: build
