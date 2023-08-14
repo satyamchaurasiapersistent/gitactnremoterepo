@@ -37,6 +37,7 @@ jobs:
         - 80
       volumes:
         - ${{github.workspace}}:/app
+      options: --name=satyam
     outputs:
       output1: ${{steps.contents.outputs.data}}
       output2: ${{ steps.step1.outputs.cxflowscanid }}
