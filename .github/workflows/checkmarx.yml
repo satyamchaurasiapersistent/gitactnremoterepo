@@ -72,6 +72,7 @@ jobs:
  #       params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
  #   - name: From Entry Point SH
       run: |
+        docker ps -a &&
         ls -la &&
         java -jar /app/cx-flow.jar --SHA=$GITHUB_SHA --spring.profiles.active="sast" --scan --github.api-url="${GITHUB_API_URL}/repos/" --cx-team="/cxserver" --cx-project="satyam" --app="chaurasia" --f=. 
 
