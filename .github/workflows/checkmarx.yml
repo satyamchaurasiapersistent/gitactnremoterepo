@@ -31,6 +31,12 @@ jobs:
  #     actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     #runs-on: ubuntu-latest
     runs-on: satyam-baker
+    container:
+      image: checkmarx/cx-flow
+      ports:
+        - 80
+      volumes:
+        - ${{github.workspace}}:/app
     outputs:
       output1: ${{steps.contents.outputs.data}}
       output2: ${{ steps.step1.outputs.cxflowscanid }}
@@ -39,56 +45,44 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v3
-      with:
-        script: |
-            const ip = require('ip')
-            const runnerIp = ip.address()
-            const DOCKER_IP = runnerIp
-            print(DOCKER_IP)
-    # Runs the Checkmarx Scan leveraging the latest version of CxFlow - REFER to Action README for list of inputs
-   # - name: Installation Of Certificate
-    #  run: |          
-     #    ls -la
-      #   sudo $JAVA_HOME/bin/keytool -import -alias sastcer -storepass changeit -keystore   $JAVA_HOME/lib/security/cacerts -file checkmarx.crt --noprompt
-
     - name: Checkmarx CxFlow Action
       id: step1
      # uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.69
+     # uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.69
       #checkmarx-ts/checkmarx-cxflow-github-action@v1.7
+      
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-      with:
-        project: ${{ github.repository }}
-        team: "CxServer"
-        #team: ${{ secrets.CHECKMARX_TEAMS }}
-        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
-        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
-        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
-        checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        incremental: true
-        break_build: false
-        scanners: sast
-        bug_tracker: Sarif
-        extra_certificates: certificate
-        jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
-        params: -it -ip $runnerIp --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
-    - name: From Entry Point SH
+     # with:
+    #    project: ${{ github.repository }}
+   #     team: "CxServer"
+   #     #team: ${{ secrets.CHECKMARX_TEAMS }}
+   #     checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+   #     checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+  #      checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
+ #       checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+  #      incremental: true
+  #      break_build: false
+ #       scanners: sast
+ #       bug_tracker: Sarif
+ #       extra_certificates: certificate
+ #       jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
+ #       params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+ #   - name: From Entry Point SH
       run: |
-        echo "$runnerIp"
-        echo $runnerIp
-        #echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
+        java -jar /app/cx-flow.jar --SHA=$GITHUB_SHA --spring.profiles.active="sast" --scan --github.api-url="${GITHUB_API_URL}/repos/" --cx-team="/cxserver" --cx-project="satyam" --app="chaurasia" --f=. 
+
   
-  job2:
-    runs-on: satyamicici
-    needs: build
-    steps:
-      - run: |
-          echo ip a
-  job3:
-    runs-on: satyamm
-    needs: build
-    steps:
-      - run: |
-          echo "${{needs.build.outputs.output2}}"        
+#  job2:
+ #   runs-on: satyamicici
+  #  needs: build
+   # steps:
+    #  - run: |
+     #     echo ip a
+  #job3:
+   # runs-on: satyamm
+   # needs: build
+    #steps:
+     # - run: |
+      #    echo "${{needs.build.outputs.output2}}"        
