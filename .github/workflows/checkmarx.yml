@@ -45,7 +45,7 @@ jobs:
     # Steps require - checkout code, run CxFlow Action, Upload SARIF report (optional)
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+   # - uses: actions/checkout@v3
     - name: Checkmarx CxFlow Action
       id: step1
      # uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
