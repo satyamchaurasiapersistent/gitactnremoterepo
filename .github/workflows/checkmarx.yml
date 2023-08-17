@@ -29,15 +29,15 @@ jobs:
   #    pull-requests: write # for checkmarx-ts/checkmarx-cxflow-github-action to write feedback to PR
   #    security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
  #     actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
-    #runs-on: ubuntu-latest
-    runs-on: satyamicici
-    container:
-      image: checkmarx/cx-flow
-      ports:
-        - 80
-      volumes:
-        - ${{github.workspace}}:/app
-      options: --name=satyam
+    runs-on: ubuntu-latest
+    #runs-on: satyamicici
+    #container:
+     # image: checkmarx/cx-flow
+     # ports:
+      #  - 80
+      #volumes:
+       # - ${{github.workspace}}:/app
+      #options: --name=satyam
     outputs:
       output1: ${{steps.contents.outputs.data}}
       output2: ${{ steps.step1.outputs.cxflowscanid }}
@@ -45,7 +45,7 @@ jobs:
     # Steps require - checkout code, run CxFlow Action, Upload SARIF report (optional)
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-   # - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: Checkmarx CxFlow Action
       id: step1
      # uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
@@ -55,26 +55,26 @@ jobs:
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-     # with:
-    #    project: ${{ github.repository }}
-   #     team: "CxServer"
+      with:
+        project: ${{ github.repository }}
+        team: "CxServer"
    #     #team: ${{ secrets.CHECKMARX_TEAMS }}
-   #     checkmarx_url: ${{ secrets.CHECKMARX_URL }}
-   #     checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
-  #      checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
- #       checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-  #      incremental: true
-  #      break_build: false
- #       scanners: sast
- #       bug_tracker: Sarif
- #       extra_certificates: certificate
- #       jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
- #       params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+        checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+        checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
+        checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+        incremental: true
+        break_build: false
+        scanners: sast
+        bug_tracker: Sarif
+        extra_certificates: certificate
+        jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
+        params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
  #   - name: From Entry Point SH
-      run: |
-        docker ps -a &&
-        ls -la &&
-        java -jar /app/cx-flow.jar --SHA=$GITHUB_SHA --spring.profiles.active="sast" --scan --github.api-url="${GITHUB_API_URL}/repos/" --cx-team="/cxserver" --cx-project="satyam" --app="chaurasia" --f=. 
+   #   run: |
+    #    docker ps -a &&
+     #   ls -la &&
+      #  java -jar /app/cx-flow.jar --SHA=$GITHUB_SHA --spring.profiles.active="sast" --scan --github.api-url="${GITHUB_API_URL}/repos/" --cx-team="/cxserver" --cx-project="satyam" --app="chaurasia" --f=. 
 
   
 #  job2:
