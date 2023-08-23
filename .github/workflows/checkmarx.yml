@@ -65,7 +65,7 @@ jobs:
         params: --logging.level.org.springframework.web.client.RestTemplate=TRACE --logging.level.com.checkmarx.flow.service=DEBUG --logging.level.org.apache.http.wire=TRACE --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.ref }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
-        echo "satasdsadsadasyam"
+        echo "satasdsadssdfsdfdsfsdfsdfsdadasyam"
         #echo "The SCAN ID :  ${{ steps.step1.outputs.cxflowscanid }}"
   
 #  job2:
