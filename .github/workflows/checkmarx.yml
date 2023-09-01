@@ -48,7 +48,7 @@ jobs:
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-       # CXFLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
+        CX_FLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
         project: ${{ github.repository }}
         team: "CxServer"
@@ -63,7 +63,7 @@ jobs:
         bug_tracker: Sarif
         extra_certificates: certificate
         jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
-        params: --exclude-folders=.git --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=main --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=main --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
         echo "FRD"
