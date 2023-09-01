@@ -48,7 +48,7 @@ jobs:
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-        CXFLOW_ZIP_EXCLUDE : ".git/.*, .github/.*"
+        CXFLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
         project: ${{ github.repository }}
         team: "CxServer"
