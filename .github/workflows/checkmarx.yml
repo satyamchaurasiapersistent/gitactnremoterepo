@@ -62,7 +62,7 @@ jobs:
         bug_tracker: Sarif
         extra_certificates: certificate
         jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
-        params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=main --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        params: cx-flow.zip-exclude=\.git/.*, \.github/.* --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=main --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
         echo "FRD"
