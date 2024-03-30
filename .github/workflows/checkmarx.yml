@@ -43,7 +43,7 @@ jobs:
     - name: Checkmarx CxFlow Action
       id: step1
     #  uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@v7.80
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@31e7ace93eab542fb2c9bee214444b981add0c8
       #checkmarx-ts/checkmarx-cxflow-github-action@v1.7
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
