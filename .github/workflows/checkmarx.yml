@@ -57,7 +57,7 @@ jobs:
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
-        incremental: true
+        incremental: false
         break_build: false
         scanners: sast
         bug_tracker: Sarif
