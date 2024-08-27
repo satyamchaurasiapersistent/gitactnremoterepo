@@ -52,7 +52,7 @@ jobs:
         project: ${{ github.repository }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }}
-        checkmarx_url:  ${{ env.checkmarx_urll }}
+        checkmarx_url:  ${{ env.CHECKMARX_URLL }}
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
