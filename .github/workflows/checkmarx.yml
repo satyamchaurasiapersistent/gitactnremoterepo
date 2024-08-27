@@ -41,18 +41,18 @@ jobs:
     - name: Checkmarx CxFlow Action
       id: step1
     #  uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.7
-      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@c272adff15ad277d0cfb4ca30b3eb0618b2b68de
+      uses: satyamchaurasiapersistent/checkmarx-cxflow-github-action@10cfe141eaccce9ed99f1d7e7853bc06d144a0e1
       #checkmarx-ts/checkmarx-cxflow-github-action@v1.7
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-        CHECKMARX_URLL : "https://sast94.cxquality.com"
+        CHECKMARX_URL : "https://sast94.cxquality.com"
         CX_FLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
         project: ${{ github.repository }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }}
-        checkmarx_url:  ${{ env.CHECKMARX_URLL }}
+        checkmarx_url:  ${{ env.CHECKMARX_URL }}
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
