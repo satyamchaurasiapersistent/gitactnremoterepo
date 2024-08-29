@@ -49,10 +49,10 @@ jobs:
         CHECKMARX_URLL : "https://sast94.cxquality.com"
         CX_FLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
-        project: ${{ github.repository }}
+        project: ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }} env.CHECKMARX_URLL 
-        checkmarx_url:  ${{ secrets.CHECKMARX_URL }}
+        checkmarx_url:  ${{ secrets.CHECKMARX_URLL }}
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
@@ -62,7 +62,7 @@ jobs:
         bug_tracker: Sarif
         extra_certificates: certificate
         jvmkeytool_path: /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/cacerts
-        params: --checkmarx.version=9.5 --checkmarx.settings-override=true --checkmarx.restrict-results-to-branch=true --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=main --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
+        params: --checkmarx.cx-branch=true--checkmarx.version=9.5 --namespace=${{ github.repository_owner }} --repo-name=${{ github.event.repository.name }} --branch=${{ github.head_ref || github.ref_name }} --cx-flow.filterSeverity --cx-flow.filterCategory  --checkmarx.disable-clubbing=true
     - name: From Entry Point SH
       run: |
         echo "asdasdasdasdsadas"
@@ -79,4 +79,4 @@ jobs:
     #needs: build
     #steps:
      # - run: |
-      #    echo "${{needs.build.outputs.output2}}"     
+      #    echo "${{needs.build.outputs.output2}}" 
