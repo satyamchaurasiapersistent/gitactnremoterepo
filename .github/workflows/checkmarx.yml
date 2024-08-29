@@ -49,7 +49,7 @@ jobs:
         CHECKMARX_URLL : "https://sast94.cxquality.com"
         CX_FLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
-        project: ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}
+        project: ${{ github.event.repository.name }}${{ github.head_ref || github.ref_name }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }} env.CHECKMARX_URLL 
         checkmarx_url:  ${{ secrets.CHECKMARX_URL }}
