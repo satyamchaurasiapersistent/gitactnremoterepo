@@ -1,4 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
+v# This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
@@ -52,7 +52,7 @@ jobs:
         project: ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}
         team: "CxServer"
         #team: ${{ secrets.CHECKMARX_TEAMS }} env.CHECKMARX_URLL 
-        checkmarx_url:  ${{ secrets.CHECKMARX_URLL }}
+        checkmarx_url:  ${{ env.CHECKMARX_URLL }}
         checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
         checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
         checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
