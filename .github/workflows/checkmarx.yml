@@ -46,7 +46,7 @@ jobs:
       env:
         CHECKMARX_CLIENT_ID : "resource_owner_sast_client"
         CHECKMARX_SCOPE : "access_control_api sast_api"
-        CHECKMARX_URLL : "https://sast94.cxquality.com"
+        CHECKMARX_URLL : "https://sast94.cxquality.coom"
         CX_FLOW_ZIP_EXCLUDE : "\\.git/.*, \\.github/.*"
       with:
         project: ${{ github.event.repository.name }}-${{ github.head_ref || github.ref_name }}
